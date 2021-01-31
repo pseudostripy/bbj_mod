@@ -2,7 +2,7 @@
 ## Description
 When Dark Souls II is first opened, this dll is automatically loaded. As long as the Dinput8.dll is in
 your game folder when you start the game, the "No Baby Jump variant 1 (full)" inject is automatically enabled 
-and remains active until the game closes. CE inject active at all times. 
+and remains active at all times until the game closes. 
 This has been written to make it simpler for newer speedrunners to use, and to save the hassle 
 of opening and enabling CE each time you open the game.
 
