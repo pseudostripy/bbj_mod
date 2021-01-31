@@ -19,4 +19,5 @@ Not yet, no.
 
 ## Credit
 +NEZ64 for a working .dll example found at https://github.com/NEZ64/DarkSoulsOfflineLogoSkip.
+
 +B3LYP for the original baby jump mod code written as a Cheat Engine table and from which this dll is simply a conversion.
