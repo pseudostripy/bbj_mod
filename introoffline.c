@@ -43,11 +43,14 @@ void setup_d8proxy(void)
 
 void attach_hook(void)
 {
+	
+	
     void *base_addr = GetModuleHandle(NULL);
 	
-	/*
-	 Add the "Open No Baby Jump Mod" code
-	*/
+	//
+	//  Add the "Open No Baby Jump Mod" code
+	//
+	
 	static char spd_bytes[] =
 	{
 		// CE newmem:
@@ -75,12 +78,22 @@ void attach_hook(void)
 	    };
 		
 	void *spdinjaddr = base_addr + spd_patch.rel_addr;
-	char *spdinj_ret = (char*) spdinjaddr + 7;
+	void *spdinj_ret = spdinjaddr + 7;
 	
 	// Calc and update addresses
-	memcpy(&spd_patch.patch[1],&spdhook,4); 		// jump to spd_bytes code
+	int jmpfw_offset 	= spdhook - (spdinjaddr + 5);
+	int jmpret_offset 	= spdinj_ret - ((void*)&spd_bytes[25] + 5);
+	
+	memcpy(&spd_patch.patch[1],&jmpfw_offset,4); 		// jump to spd_bytes code
+	memcpy(&spd_bytes[26],&jmpret_offset,4); 			// return to spdinject (+offset)
+	//	
 	memcpy(&spd_bytes[13],&speedBse,4); 			// fix mov [speedBse]
-	memcpy(&spd_bytes[26],&spdinj_ret,4); 			// return to spdinject (+offset)
+	
+	
+	//
+	DWORD op;
+	VirtualProtect(spd_bytes, sizeof(spd_bytes),
+		       PAGE_EXECUTE_READWRITE, &op);
 	
 	// Edit memory:
 	DWORD size = spd_patch.size;
@@ -92,8 +105,9 @@ void attach_hook(void)
 	}
 	
 	/*
-	 Add the "no baby jump variant 1 (full)" code
-	*/
+	
+	//	 Add the "no baby jump variant 1 (full)" code
+	//
 	static char jump_bytes[] =
 	{
 		// CE newmem:
@@ -132,6 +146,7 @@ void attach_hook(void)
 		memcpy(bbjinjaddr, jump_patch.patch, size);
 		VirtualProtect(bbjinjaddr, size, old, &old);
 	}
+	*/
 	
 }
 
