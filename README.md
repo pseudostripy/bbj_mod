@@ -16,7 +16,7 @@ Rename or delete Dinput8.dll from the Dark Souls II game folder.
 
 ## FAQ
 * Does this work for Dark Souls II: Scholar of the First Sin?
-Not yet, no.
+No, however an equivalent version that works for sotfs can be found at https://github.com/pseudostripy/bbj_mod_sotfs/releases/latest.
 
 ## Credit
 * NEZ64 for a working .dll example found at https://github.com/NEZ64/DarkSoulsOfflineLogoSkip.
